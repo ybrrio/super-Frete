@@ -1,0 +1,12 @@
+{
+  "precoEsperadoSucesso": "R$ 22,00",
+  "mensagemErroCepOrigem": "CEP de origem não é válido.",
+  "mensagemErroCepDestino":"CEP de destino não é válido.",
+  "mensagemErroComprimentoAbaixo13": "Comprimento mínimo 13 cm.",
+  "mensagemErroComprimentoAcima150": "Comprimento máximo 150 cm.",
+  "mensagemErroAlturaAbaixoDe04": "Altura mínima 0.4 cm.",
+  "mensagemErroAlturaAcimaDe150": "Altura máxima 150 cm.",
+  "mensagemErroLarguraAbaixoDe8": "Largura mínima 8 cm.",
+  "mensagemErroLarguraAcimaDe150": "Largura máxima 150 cm."
+}
+
