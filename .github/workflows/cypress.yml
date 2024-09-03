@@ -1,0 +1,49 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' 
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Cypress tests
+      run: npx cypress run
+      env:
+        CI: true
+        CYPRESS_baseUrl: 'https://web.superfrete.com'  # Definindo a URL base do Cypress
+        CYPRESS_pageLoadTimeout: 120000  # Definindo o timeout para carregamento da página
+        API_KEY: ${{ secrets.API_KEY }}  # Usando uma variável de ambiente segura armazenada nos Secrets do GitHub
+        NODE_ENV: 'test'  # Configurando o ambiente de execução para 'test'
+
+    # Faz upload dos vídeos e screenshots dos testes falhos
+    - name: Upload Cypress videos
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
+    - name: Upload Cypress screenshots
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
